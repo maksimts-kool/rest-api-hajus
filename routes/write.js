@@ -11,16 +11,25 @@ router.post('/widgets', (req, res) => {
         return res.status(400).send({ error: 'One or all params are missing' })
     }
     let newWidget = {
-        id: widgets.length + 1,
+        id: Math.max(...widgets.map(w => w.id), 0) + 1,
         price: req.body.price,
         name: req.body.name
     }
     widgets.push(newWidget)
-    res.status(201).location('localhost:8080/widgets/' + newWidget.id).send(
-        newWidget
-    )
+    res.status(201)
+        .location('/widgets/' + newWidget.id)
+        .send(newWidget)
 })
 
-// TODO(B): реализовать DELETE /widgets/:id — 204 при успехе, 404 если не найден.
+// DELETE /widgets/:id — удаляет виджет по id
+router.delete('/widgets/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const idx = widgets.findIndex(w => w.id === id)
+    if (idx === -1) {
+        return res.status(404).send({ error: 'Widget not found' })
+    }
+    widgets.splice(idx, 1)
+    res.status(204).send()
+})
 
 module.exports = router
