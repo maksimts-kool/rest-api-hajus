@@ -28,7 +28,10 @@ docs/api-write.md  документация POST/DELETE          (разрабо
 
 | Метод | Путь | Успех | Ошибка |
 |---|---|---|---|
-| `GET` | `/widgets` | `200` + массив | — |
+| `GET` | `/widgets` | `200` + массив | `400` (плохие query-параметры) |
 | `GET` | `/widgets/:id` | `200` + объект | `404` |
 | `POST` | `/widgets` | `201` + объект | `400` |
 | `DELETE` | `/widgets/:id` | `204` | `404` |
+
+`GET /widgets` поддерживает фильтрацию и сортировку через query-параметры
+(`name`, `minPrice`, `maxPrice`, `sort`, `order`) — см. [docs/api-read.md](docs/api-read.md).
