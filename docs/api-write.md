@@ -51,4 +51,29 @@ xh -v DELETE localhost:8080/widgets/2
 
 ---
 
+POST /widgets/:id (create or replace)
+- путь: `/widgets/:id`
+- тело: `name`, `price` (оба обязательны)
+- если виджет с таким `id` существует → `200` + обновлённый объект
+- если не существует → `201` + `Location: /widgets/:id` + созданный объект
+- ошибки: `400` при отсутствии полей или неверном id
+
+Примеры:
+
+```
+curl -i -X POST http://localhost:8080/widgets/3 -H "Content-Type: application/json" --data '{"name":"NewName","price":12.5}'
+```
+
+Ожидаемый результат при замене: `200` + тело объекта.
+
+![POST id 200 response](screenshots/post-id-200.svg)
+
+```
+curl -i -X POST http://localhost:8080/widgets/5 -H "Content-Type: application/json" --data '{"name":"BrandNew","price":5.5}'
+```
+
+Ожидаемый результат при создании: `201` + `Location`.
+
+![POST id 201 response](screenshots/post-id-201.svg)
+
 Файлы с тестовыми скриншотами находятся в `docs/screenshots/`.

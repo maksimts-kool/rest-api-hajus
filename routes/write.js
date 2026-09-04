@@ -32,4 +32,25 @@ router.delete('/widgets/:id', (req, res) => {
     res.status(204).send()
 })
 
+// POST /widgets/:id — create or replace a single widget at the given id
+router.post('/widgets/:id', (req, res) => {
+    const id = Number(req.params.id)
+    if (!Number.isInteger(id) || id <= 0) {
+        return res.status(400).send({ error: 'Invalid id' })
+    }
+    if (!req.body || !req.body.name || !req.body.price) {
+        return res.status(400).send({ error: 'One or all params are missing' })
+    }
+    const idx = widgets.findIndex(w => w.id === id)
+    const widget = { id: id, name: req.body.name, price: req.body.price }
+    if (idx === -1) {
+        // create
+        widgets.push(widget)
+        return res.status(201).location('/widgets/' + id).send(widget)
+    }
+    // replace
+    widgets[idx] = widget
+    return res.status(200).send(widget)
+})
+
 module.exports = router
