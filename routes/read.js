@@ -4,17 +4,20 @@ const express = require('express')
 const router = express.Router()
 const widgets = require('../data/widgets')
 
+// GET /widgets — весь массив, 200
 router.get('/widgets', (req, res) => {
     res.send(widgets)
 })
 
-// TODO(A): поиск по индексу ломается после DELETE — заменить на поиск по id:
-//          widgets.find(w => w.id === Number(req.params.id))
+// GET /widgets/:id — один виджет по id, 200 / 404
+// Поиск идёт по полю id, а не по индексу массива: после DELETE у соседа
+// индексы съезжают и widgets[id - 1] вернул бы чужой виджет.
 router.get('/widgets/:id', (req, res) => {
-    if (typeof widgets[req.params.id - 1] === 'undefined') {
+    const widget = widgets.find(w => w.id === Number(req.params.id))
+    if (!widget) {
         return res.status(404).send({ error: "Widget not found" })
     }
-    res.send(widgets[req.params.id - 1])
+    res.send(widget)
 })
 
 module.exports = router
