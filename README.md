@@ -14,12 +14,11 @@ API поднимется на `http://localhost:8080`.
 ## Структура
 
 ```
-index.js           точка входа, подключает роутеры   (общий, не редактируется)
-data/widgets.js    in-memory хранилище               (общий, не редактируется)
-routes/read.js     GET-эндпоинты                     (разработчик A)
-routes/write.js    POST/DELETE-эндпоинты             (разработчик B)
-docs/api-read.md   документация GET                  (разработчик A)
-docs/api-write.md  документация POST/DELETE          (разработчик B)
+index.js           точка входа, подключает роутер
+data/widgets.js    in-memory хранилище
+routes/widgets.js  все эндпоинты /widgets (GET, POST, DELETE)
+docs/api-read.md   документация GET
+docs/api-write.md  документация POST/DELETE
 ```
 
 Разделение задач — см. [WORK_SPLIT.md](WORK_SPLIT.md).

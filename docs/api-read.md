@@ -1,6 +1,6 @@
 # GET-эндпоинты (разработчик A)
 
-Ветка: `feature/setup-and-get` · файл реализации: [`routes/read.js`](../routes/read.js)
+Ветка: `feature/setup-and-get` · файл реализации: [`routes/widgets.js`](../routes/widgets.js)
 
 Сервер: `npm install && npm start` → `http://localhost:8080`
 
