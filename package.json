@@ -1,0 +1,26 @@
+{
+  "name": "rest-api-hajus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maksimts-kool/rest-api-hajus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/maksimts-kool/rest-api-hajus/issues"
+  },
+  "homepage": "https://github.com/maksimts-kool/rest-api-hajus#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
